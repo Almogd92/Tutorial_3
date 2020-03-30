@@ -27,7 +27,7 @@ jobs:
       - image: mongo:4.0
     environment:
       APP_PORT: 4000
-    setps:
+    steps:
       - checkout
       - install_deps
       - run:
