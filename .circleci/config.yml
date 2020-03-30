@@ -31,10 +31,10 @@ jobs:
       - checkout
       - install_deps
       - run:
-        name: run tests
-        command: |
-          npm run integration-tests
-          mkdir -p test-output
+          name: run integration tests
+          command: |
+            npm run integration-tests
+            mkdir -p test-output
     
   pack:
     docker:
@@ -52,8 +52,8 @@ workflows:
     jobs:
       - ci-build
       - integration-tests:
-        requires:
-          - ci-build
+          requires:
+            - ci-build
       - pack:
           requires:
             - ci-build
