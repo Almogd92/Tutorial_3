@@ -27,6 +27,14 @@ jobs:
       - image: mongo:4.0
     environment:
       APP_PORT: 4000
+    setps:
+      - checkout
+      - install_deps
+      - run:
+        name: run tests
+        command: |
+          npm run integration-tests
+          mkdir -p test-output
     
   pack:
     docker:
@@ -43,6 +51,9 @@ workflows:
   build-and-packge:
     jobs:
       - ci-build
+      - integration-tests:
+        requires:
+          - ci-build
       - pack:
           requires:
             - ci-build
