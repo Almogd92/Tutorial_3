@@ -21,6 +21,13 @@ jobs:
           command: |
             npm run unit-tests
             mkdir -p test-output
+  integration-tests:
+    docker:
+      - image: circleci/node:lts
+      - image: mongo:4.0
+    environment:
+      APP_PORT: 4000
+    
   pack:
     docker:
       - image: circleci/node:lts
